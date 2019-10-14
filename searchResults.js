@@ -151,7 +151,7 @@ async function getSelectedRepos(position){
 	storeRepo(REPO_STORAGE_KEY, repository)
 	
  	// Navigate to dashboard
-	location.href = "dashboard.html"
+	location.href = "index.html"
     
 }
 
