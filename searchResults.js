@@ -3,24 +3,78 @@
 
 var query = localStorage.getItem("query");
 var result;
-var exists = 0;
+var exists = false;
+
 var searchBtn = document.getElementById("searchButton")
-searchBtn.addEventListener("click", show_gif)
+ searchBtn.addEventListener("click", getRepos())
 document.getElementById("resultCard").style.display = "none";
 
-var input = document.getElementById("searchInput");
-input.addEventListener("keydown", function(event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-         result = null;
-         getRepos();
-    }
-})
+function showNavDrawer(x){
+      x.classList.toggle("change");
+$("#navigation_drawer").toggle();
+ 
+   
+}
 
+function pageLoaded(){
+    
+ $('#SP_title').click(function(){
+    window.location.href = "index.html";
+});
+    
+    if (localStorage.getItem(REPO_STORAGE_KEY) === null)
+	{
+        $('#contributor_nav').hide();
+       
+         $('#files_nav').hide();
+    }
+   
+    $('#searchButton').click(function(){ 
+        var input = document.getElementById("searchInput").value;
+	
+	       localStorage.setItem("query", input)
+        location.reload();
+    
+    
+    });
+    $('#searchInput').keypress(function(e){
+       
+        if(e.which == 13){
+             e.preventDefault();
+             result = null;
+            
+            var input = document.getElementById("searchInput").value;
+	// Store query for access in searchResults.js
+	       localStorage.setItem("query", input)
+           
+        
+
+            location.reload();
+            
+        }
+    });
+}
 
 function show_gif() {
-    console.log("clicked");
-      if (exists == 1){
+    
+  
+        //append the loading gif
+    var new_gif = document.createElement("div");
+    new_gif.setAttribute("id", "loadingPrawns");
+    new_gif.setAttribute("style","text-align: center");
+  
+	var img = document.createElement("img");
+    img.setAttribute("src", "assets/img/prawn.gif");
+    new_gif.appendChild(img);
+    var content = document.getElementById("searchBar");
+    content.appendChild(new_gif);
+	
+}
+
+
+async function getRepos(){
+        if (exists){
+          //if there are results, remove the results.
         var content = document.getElementById("content")
         var cardView = document.getElementById("cardView")
         content.removeChild(cardView)
@@ -30,22 +84,8 @@ function show_gif() {
         content.appendChild(new_cardView)
         
     }
-   
-	var new_gif = document.createElement("div");
-    new_gif.setAttribute("id", "loadingPrawns");
-    new_gif.setAttribute("style","text-align: center");
-  
-	var img = document.createElement("img");
-    img.setAttribute("src", "assets/img/prawn.gif");
-    new_gif.appendChild(img);
-    var content = document.getElementById("searchBar");
-    content.appendChild(new_gif);
-    exists = 1;
-}
-
-
-async function getRepos(){
 	show_gif()
+
     console.log("button clicked");
    
 
@@ -58,8 +98,12 @@ async function getRepos(){
         console.log('Error: ', error);
     }
     result =  await response.json();
+   
+
     var loading_div = document.getElementById("loadingPrawns")
     loading_div.remove();
+    exists = 1;
+    
     showResults(result, 0)
   
   
@@ -68,8 +112,8 @@ async function getRepos(){
 }
 
 function showResults(repos, i){
-  
-    
+ 
+   
     var card = document.getElementById("resultCard")
  
     var cardView = document.getElementById("cardView")
@@ -99,22 +143,15 @@ function showResults(repos, i){
         
          $card.css({ opacity: 0 }); 
         $card.show();
-       
+      
            
        $card.animate({opacity:'1'},400);
         setTimeout(function(){    showResults(repos, i+1)}, 410);
     
     }
-//    for (var i = 0; i < repos.items.length; i++){
-//     
-//       
-////       
-//      
-//      
-//     
-//    }
-//        var $cardView = $('#cardView');
-//      $cardView.show('right');
+    
+        
+
    
 }
 async function getSelectedRepos(position){
@@ -155,5 +192,4 @@ async function getSelectedRepos(position){
     
 }
 
-
-getRepos()
+pageLoaded();

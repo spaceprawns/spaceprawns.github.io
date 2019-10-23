@@ -86,9 +86,22 @@ function buildBarChart(ctx, commitsData) {
         },
         options: {
         scales: {
+        xAxes: [{
+        ticks: {
+        beginAtZero: true
+        },
+        scaleLabel: {
+            labelString: 'Week No.',
+            display: true,
+        }
+        }],
         yAxes: [{
         ticks: {
         beginAtZero: true
+        },
+        scaleLabel: {
+            labelString: 'No. of Commits',
+            display: true,
         }
         }]
         }

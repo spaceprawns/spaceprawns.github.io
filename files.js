@@ -26,7 +26,7 @@ function binarySearch(arr, name) {
  * of the target file
  */
 async function getFileInfo(file) {
-    var fileName = file._name;
+    var fileName = file.name;
     let repository = retrieveRepo(REPO_STORAGE_KEY);
     let commits_url = repository._commitsUrl;
     // want url in this format to retrieve commits for a file
@@ -50,7 +50,7 @@ async function getFileInfo(file) {
             contributors.push(new Contributor(result[i].committer))
         }
     }
-    console.log(contributors)
+//    console.log(contributors)
     // bubble sort array in preparation for clean-up
     if(contributors.length>1) {
         for(var i=0; i<contributors.length; i++){
@@ -63,7 +63,7 @@ async function getFileInfo(file) {
             }
         }
     }
-    console.log(contributors)
+//    console.log(contributors)
     
     // Clean up duplicates
     var unique_contributors = []
@@ -76,13 +76,14 @@ async function getFileInfo(file) {
             }
         }
     }
-    console.log(unique_contributors)
+//    console.log(unique_contributors)
     // retrieve email
     for(var i=0; i<unique_contributors.length; i++){
-        var user = unique_contributors[i].name;
+        var user = unique_contributors[i]._name;
         var user_info_url = "https://api.github.com/users/" + user
         let query = await fetch(user_info_url);
         let user_info = await query.json();
+//        console.log(user_info);
         // set email
         if(user_info.email == null){
             unique_contributors[i]._email = "no email given";
@@ -92,7 +93,7 @@ async function getFileInfo(file) {
         }
     }
     
-    console.log(unique_contributors)
+//    console.log(unique_contributors)
     
     var fileObject = new File(fileName, unique_contributors);
     storeRepo(FILE_STORAGE_KEY, fileObject);
@@ -124,6 +125,7 @@ async function getFiles()
         filesHtml += "<div class=\"row\" style=\"margin:20px\">";
         filesHtml += "<div class=\"col\">";
         filesHtml += "<element onclick=\"getFileInfo(globalFiles[" + index+ "])\">"
+            // TODO: make change in the style= so we can get a highlight of the fileCard 
         filesHtml +=      "<div class=\"card shadow py-2\" style=\"border-left: .25rem solid +" + colour + "\">";
         filesHtml +=           "<div class=\"card-body\">";
         filesHtml +=               "<div class=\"text-uppercase text-center font-weight-bold text-xs mb-1\">";

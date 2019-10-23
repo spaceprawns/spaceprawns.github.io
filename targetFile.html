@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -5,28 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>SP Git Analysis</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
-	<link rel="icon" href="assets/img/prawn.ico" type="image/x-icon">
+    <link rel="icon" href="assets/img/prawn.ico" type="image/x-icon">
 </head>
 
 <body id="page-top">
     <div id="wrapper">
-        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion p-0" style="background-color: crimson">
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion p-0"
+            style="background-color: crimson">
             <div class="container-fluid d-flex flex-column p-0">
-                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="dashboard.html">
-                    <div class="sidebar-brand-icon rotate-n-15"><i class="fa fa-git-square"></i></div>
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
+                    href="index.html">
+                    <img src="prawn_icon.jpeg" style= "height: 30px; width:30px; margin-right: 2px; margin-bottom: 5px; filter: invert(100%)" >
                     <div class="sidebar-brand-text mx-3"><span>Space Prawns</span></div>
                 </a>
-                <hr class="sidebar-divider my-0" />
+                <hr class="sidebar-divider my-0">
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    <li role="presentation" class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a><a class="nav-link" href="files.html"><i class="far fa-file-alt"></i><span>Files</span></a><a class="nav-link" href="contributors.html"><i class="fas fa-user"></i><span>Contributors</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="index.html"><i
+                                class="fas fa-tachometer-alt"></i><span>Dashboard</span></a><a class="nav-link  active"
+                            href="files.html"><i class="far fa-file-alt"></i><span>Files</span></a><a class="nav-link "
+                            href="contributors.html"><i class="fas fa-user"></i><span>Contributors</span></a>
+                        <a class="nav-link" href="issue.html"><i
+                                class="fas fa-exclamation-triangle"></i><span>Issues</span></a></li>
                 </ul>
-                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
+                        id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
         
@@ -35,25 +44,20 @@
             <div id="content">
                 
                 <!-- insert content here -->
-            <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                <h3 class="text-dark mb-0" id="pageTitle">Filename</h3>
-            </div>
-            <div class="card shadow border-left-primary py-2" style="margin: 10px;height: 160px;" id = "resultCard" onclick = "" >
-                    <div class="card-body">
-                        <div class="row align-items-center no-gutters">
-                            <div class="col mr-2">
-                              <div class="text-dark font-weight-bold h5 mb-0">  <img style="width:40px;height:40px;" src=><span>Contributor</span>
-                                </div>
-                            </div>
-                            <div class="col-auto"><i class="fab fa-github fa-2x text-gray-300"></i></div>
-                        </div>
-                    
-                        <p>https://api.github.com/repoauthor/reponame</p>
+            <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3"
+                            id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                        <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h1 class="text-dark mb-0" style="margin: 10px;" id="pageTitle">File Name</h1>
                     </div>
+                    </div>
+                </nav>
+            
+                <div id="pageBody">
+                    <!-- loading animation -->
+                    <div style="text-align: center" id="loadingdivimg"><img class="loadingdivimg"
+                            src="assets/img/prawn.gif" /></div>
                 </div>
-             
-                
-                
             </div>
             
             
@@ -63,8 +67,6 @@
                 </div>
             </footer>
         </div>
-        
-        
         
         <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
         <script src="assets/js/jquery.min.js"></script>

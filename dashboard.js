@@ -3,13 +3,10 @@
 // Setup search bar 
 const searchBtn = document.getElementById("searchButton")
 searchBtn.addEventListener("click", sendQuery)
-var input = document.getElementById("searchInput");
-input.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-        document.getElementById("searchButton").click();
-    }
-})
+
+
+
+
 
 function sendQuery() {	
 	var query = document.getElementById("searchInput").value;
@@ -43,10 +40,12 @@ function setDashboardInformation() {
 	let contributorsLabel = document.getElementById("contributorsText")
 	let descriptionCard = document.getElementById("descriptionText")
 	
+    $("#pageTitle").css("padding-top", "10px");
+    $("#pageTitle").height('50px');
 	
 	// Set element values to repo values
 	issueLabel.textContent = repo._numIssues
-	pageTitle.textContent = repo._name
+	pageTitle.textContent = repo._name + "'s repository";
 	lastUpdatedLabel.textContent = repo._lastUpdated
 	contributorsLabel.textContent = repo._totalContributors
 	descriptionCard.textContent = repo._description
@@ -241,21 +240,47 @@ function monthlyView(){
         }
         });
 }
+function showNavDrawer(x){
+      x.classList.toggle("change");
+ $("#navigation_drawer").toggle();
+  
 
-function pageLoaded()
-{
+
+   
+}
+
+function pageLoaded(){
+
+ 
+ 
+    $('#searchInput').keypress(function(e){
+       
+        if(e.which == 13){
+             e.preventDefault();
+            sendQuery();
+        }
+    });
+ 
 	// Check for a repo in storage
 	if (localStorage.getItem(REPO_STORAGE_KEY) === null)
 	{
+        $('#file_page_nav').hide();
+         $('#contributor_page_nav').hide();
+         $('#issues_page_nav').hide();
+       
+        
+        
+        
 		// Initialise empty main page
 		let pageBody = document.getElementById("dashboardBody")
 		var emptyHTML = ""
-		emptyHTML += "<div class=\"container\">"
+		emptyHTML += "<div  id = \"prawn_id\">"
     	emptyHTML += "<h1 class=\"text-center\">Welcome to the Space Prawns Git Analysis tool!</h1>"
     	emptyHTML += "<p class=\"text-center\">Use the search bar above to search for a repository!</p></div>"
 		emptyHTML += "<div style=\"text-align: center\">"
-		emptyHTML += "<img class=\"loadingdivimg\" src=\"assets/img/prawn.gif\"/></div></div>"
+		emptyHTML += "<img class=\"loadingdivimg\" src=\"assets/img/prawn.gif\" ></div></div>"
 		pageBody.innerHTML = emptyHTML
+   
 	}
 	else
 	{

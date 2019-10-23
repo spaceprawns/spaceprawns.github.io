@@ -14,8 +14,8 @@ class File{
 
     initialiseFromFilePDO(FilePDO){
         // Initialise the instance via the mutator methods from the PDO object
-        this._fileName = FilePDO.fileName;
-        this._contributionCount = FilePDO._contributionCount;
+        this._fileName = FilePDO._fileName;
+        this._contributors = FilePDO._contributors;
     }
 }
 
@@ -25,7 +25,7 @@ function retrieveFile(FILE_STORAGE_KEY){
         var fileObject = JSON.parse(retrievedObject);
         var fileInstance = new File("", []);
         fileInstance.initialiseFromFilePDO(fileObject);
-		console.log(fileInstance)
+//		console.log(fileInstance)
         return fileInstance;
     }
     else{
@@ -41,6 +41,7 @@ class Contributor{
         this._id = ContributorObject.id;
         this._email = ContributorObject.email;
         this._avatar_url = ContributorObject.avatar_url;
+        this._html_url = ContributorObject.html_url;
     }
     
     set email(email) {
@@ -54,6 +55,7 @@ class Contributor{
         this._id = ContributorPDO._id;
         this._email = ContributorPDO.email;
         this._avatar_url = ContributorPDO.avatar_url;
+        this._html_url = ContributorPDO.html_url;
     }
 }
 
@@ -223,7 +225,7 @@ async function getRepos(){
     let currentPath = window.location.pathname;
     let currentPage = currentPath.split("/").pop();
     console.log(currentPage)
-    if (currentPage == "dashboard.html")
+    if (currentPage == "index.html")
     {
         setDashboardInformation();
     }

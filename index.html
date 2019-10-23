@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>SP Git Analysis</title>
+    <link rel="stylesheet" href="nav_drawer.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet"
@@ -16,33 +18,46 @@
     <link rel="icon" href="assets/img/prawn.ico" type="image/x-icon">
 </head>
 
-<body id="page-top">
-    <div id="wrapper">
+
+<body id="page-top" >
+    <div id="wrapper" >
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion p-0"
-            style="background-color: crimson">
+            style="background-color: crimson" id = "navigation_drawer">
             <div class="container-fluid d-flex flex-column p-0">
                 <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
                     href="index.html">
-                    <div class="sidebar-brand-icon rotate-n-15"><i class="fa fa-git-square"></i></div>
+                     <img src="prawn_icon.jpeg" style= "height: 30px; width:30px; margin-right: 2px; margin-bottom: 5px; filter: invert(100%)" >
                     <div class="sidebar-brand-text mx-3"><span>Space Prawns</span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i
-                                class="fas fa-tachometer-alt"></i><span>Dashboard</span></a><a class="nav-link"
-                            href="files.html"><i class="far fa-file-alt"></i><span>Files</span></a><a class="nav-link"
+                                class="fas fa-tachometer-alt"></i><span>Dashboard</span></a><a id = "file_page_nav" class="nav-link"
+                            href="files.html"><i class="far fa-file-alt"></i><span>Files</span></a><a class="nav-link" id = "contributor_page_nav"
                             href="contributors.html"><i class="fas fa-user"></i><span>Contributors</span></a>
-                            <a class="nav-link" href="issue.html"><i class="fas fa-exclamation-triangle"></i></i><span>Issues</span></a></li>
+                            <a class="nav-link" href="issue.html"id = "issues_page_nav"><i class="fas fa-exclamation-triangle"></i><span>Issues</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
                         id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
 
-        <div class="d-flex flex-column" id="content-wrapper">
+        <div class="d-flex flex-column" id="content-wrapper" >
             <div id="content">
 
-                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                <nav class="navbar navbar-light navbar-expand shadow mb-4 topbar static-top" style="background-color: white;"  >
+                    <div onclick="showNavDrawer(this)">
+                    <div class="container" >
+  <div class="bar1"></div>
+  <div class="bar2"></div>
+  <div class="bar3"></div>
+</div>
+                     
+                     
+                    </div>
+                       
+                
+                   
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3"
                             id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <form
@@ -51,7 +66,7 @@
                                     class="bg-light form-control border-0 small" type="text"
                                     placeholder="Search repositories ...">
                                 <div class="input-group-append"><button class="btn btn-primary py-0" type="button"
-                                        id="searchButton" style="background-color: crimson; border-color: crimson"><i
+                                        id="searchButton" style="background-color: crimson; border-color: crimson; color: white"><i
                                             class="fas fa-search" id="searchButton"></i></button></div>
                             </div>
 
@@ -59,16 +74,16 @@
                     </div>
 
                 </nav>
-                <div id="dashboardBody" class="container-fluid">
-                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                        <h3 class="text-dark mb-0" id="pageTitle">Dashboard - "Repository Name"</h3>
+                <div id="dashboardBody" class="container-fluid" >
+                    <div  style ="text-align: center; height: 65px"  >
+                        <h3 class=" mb-0" id="pageTitle" style = "color: black" >Dashboard - "Repository Name"</h3>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 col-xl-3 mb-4">
+                    <div class="row" >
+                        <div class="col-xl-3 mb-4"  >
                             <div class="card shadow border-left-primary py-2">
-                                <div class="card-body">
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col mr-2">
+                                <div class="card-body" style="height: 80px; width: auto">
+                                    <div class="row align-items-center no-gutters"  >
+                                        <div class="col mr-2" >
                                             <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
                                                 <span>TOTAL Issues</span></div>
                                             <div class="text-dark font-weight-bold h5 mb-0"><span
@@ -80,9 +95,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
+                        <div class="col-xl-3 mb-4">
                             <div class="card shadow border-left-success py-2">
-                                <div class="card-body">
+                                <div class="card-body" style="height: 80px;  width: auto">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col mr-2">
                                             <div class="text-uppercase text-success font-weight-bold text-xs mb-1">
@@ -95,9 +110,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
+                        <div class="col-xl-3 mb-4">
                             <div class="card shadow border-left-success py-2">
-                                <div class="card-body">
+                                <div class="card-body" style="height: 80px;  width: auto">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col mr-2">
                                             <div class="text-uppercase text-success font-weight-bold text-xs mb-1">
@@ -110,9 +125,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
+                        <div class="col-xl-3 mb-4">
                             <div class="card shadow border-left-info py-2">
-                                <div class="card-body">
+                                <div class="card-body" style="height: 80px;  width: auto">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col mr-2">
                                             <div class="text-uppercase text-info font-weight-bold text-xs mb-1">
@@ -132,36 +147,25 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-7 col-xl-8">
-                            <div class="card shadow mb-4">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-primary font-weight-bold m-0">Description</h6>
-                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle"
-                                            data-toggle="dropdown" aria-expanded="false" type="button"><i
-                                                class="fas fa-ellipsis-v text-gray-400"></i></button>
-                                        <div role="menu"
-                                            class="dropdown-menu shadow dropdown-menu-right animated--fade-in">
-                                            <p class="text-center dropdown-header">dropdown header:</p><a
-                                                role="presentation" class="dropdown-item" href="#"> Action</a><a
-                                                role="presentation" class="dropdown-item" href="#"> Another action</a>
-                                            <div class="dropdown-divider"></div><a role="presentation"
-                                                class="dropdown-item" href="#"> Something else here</a>
-                                        </div>
-                                    </div>
+                            <div class="card shadow mb-4" >
+                                <div class="card-header d-flex justify-content-between align-items-center" style="background-color:crimson; color: white   ; "  >
+                                    <h6 class=" font-weight-bold m-0">Description</h6>
+                                    
                                 </div>
                                 <div id="descriptionText" class="card-body">
                                     <p>Lorem ipsum dolor<br /></p>
                                 </div>
                             </div>
 
-                            <div class="card shadow mb-4">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-primary font-weight-bold m-0">Project Timeline</h6>
+                            <div class="card shadow mb-4"  >
+                                <div class="card-header d-flex justify-content-between align-items-center" style="background-color:crimson;">
+                                    <h6  class=" font-weight-bold m-0" style = "color:white" >Project Timeline</h6>
                                     <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle"
                                             data-toggle="dropdown" aria-expanded="false" type="button"><i
                                                 class="fas fa-ellipsis-v text-gray-400"></i></button>
                                         <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
                                             role="menu">
-                                            <p class="text-center dropdown-header">dropdown header:</p><a
+                                            <p class="text-center dropdown-header">Time Span:</p><a
                                                 class="dropdown-item" role="presentation" href="#" onclick="monthlyView()">&nbsp;Monthly View</a><a
                                                 class="dropdown-item" role="presentation" href="#" onclick="buildCommitsBarChart()">&nbsp;Weekly View</a>
                                             
@@ -175,22 +179,10 @@
                         </div>
                         <div class="col-lg-5 col-xl-4">
                             <div class="card shadow mb-4">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-primary font-weight-bold m-0" id="pieChartTitle">Top Contributors
+                                <div class="card-header d-flex justify-content-between align-items-center" style="background-color:crimson;">
+                                    <h6 class=" font-weight-bold m-0" id="pieChartTitle" style = "color:white">Top Contributors
                                     </h6>
-                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle"
-                                            data-toggle="dropdown" aria-expanded="false" type="button"><i
-                                                class="fas fa-ellipsis-v text-gray-400"></i></button>
-                                        <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
-                                            role="menu">
-                                            <p class="text-center dropdown-header">dropdown header:</p><a
-                                                class="dropdown-item" role="presentation" href="#">&nbsp;Action</a><a
-                                                class="dropdown-item" role="presentation" href="#">&nbsp;Another
-                                                action</a>
-                                            <div class="dropdown-divider"></div><a class="dropdown-item"
-                                                role="presentation" href="#">&nbsp;Something else here</a>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-area" style="height: auto"><canvas height="320" width="241"
@@ -203,7 +195,7 @@
                 </div>
             </div>
             <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
+                <div >
                     <div class="text-center my-auto copyright"><span>Copyright © Space Prawns 2019</span></div>
                 </div>
             </footer>
